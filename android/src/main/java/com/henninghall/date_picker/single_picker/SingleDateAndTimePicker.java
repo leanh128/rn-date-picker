@@ -2,7 +2,6 @@ package com.henninghall.date_picker.single_picker;
 
 
 import static com.henninghall.date_picker.models.Is24HourSource.locale;
-import static com.henninghall.date_picker.single_picker.widget.SingleDateAndTimeConstants.DAYS_PADDING;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -12,14 +11,9 @@ import android.graphics.Typeface;
 import android.text.TextUtils;
 import android.text.format.DateFormat;
 import android.util.AttributeSet;
-import android.util.Log;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.Space;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -35,17 +29,13 @@ import com.henninghall.date_picker.Utils;
 import com.henninghall.date_picker.models.Mode;
 import com.henninghall.date_picker.models.Variant;
 import com.henninghall.date_picker.props.DateProp;
-import com.henninghall.date_picker.props.DividerHeightProp;
-import com.henninghall.date_picker.props.FadeToColorProp;
 import com.henninghall.date_picker.props.HeightProp;
 import com.henninghall.date_picker.props.Is24hourSourceProp;
 import com.henninghall.date_picker.props.LocaleProp;
 import com.henninghall.date_picker.props.MaximumDateProp;
 import com.henninghall.date_picker.props.MinimumDateProp;
-import com.henninghall.date_picker.props.MinuteIntervalProp;
 import com.henninghall.date_picker.props.ModeProp;
 import com.henninghall.date_picker.props.TextColorProp;
-import com.henninghall.date_picker.props.UtcProp;
 import com.henninghall.date_picker.props.VariantProp;
 import com.henninghall.date_picker.single_picker.widget.DateWithLabel;
 import com.henninghall.date_picker.single_picker.widget.WheelAmPmPicker;
@@ -56,9 +46,6 @@ import com.henninghall.date_picker.single_picker.widget.WheelMinutePicker;
 import com.henninghall.date_picker.single_picker.widget.WheelMonthPicker;
 import com.henninghall.date_picker.single_picker.widget.WheelPicker;
 import com.henninghall.date_picker.single_picker.widget.WheelYearPicker;
-import com.henninghall.date_picker.ui.Accessibility;
-import com.henninghall.date_picker.ui.UIManager;
-import com.henninghall.date_picker.wheels.Wheel;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -179,7 +166,7 @@ public class SingleDateAndTimePicker extends FrameLayout {
 //        isAmPm = !(DateFormat.is24HourFormat(this.getContext()));
         isAmPm = false;
 
-        inflate(this.getContext(), R.layout.single_day_and_time_picker, this);
+        inflate(this.getContext(), R.layout.curved_date_time_picker_view, this);
         yearsPicker = findViewById(R.id.yearPicker);
         monthPicker = findViewById(R.id.monthPicker);
         daysOfMonthPicker = findViewById(R.id.daysOfMonthPicker);
@@ -735,19 +722,8 @@ public class SingleDateAndTimePicker extends FrameLayout {
 
 
     public void update() {
-
-//        if (didUpdate(VariantProp.name)) {
-//            this.removeAllViewsInLayout();
-//            LinearLayout layout = new LinearLayout(getContext());
-//            LayoutInflater.from(getContext()).inflate(state.derived.getRootLayout(), layout);
-//            this.addView(layout, layoutParams);
-//            uiManager = new UIManager(state, this);
-//        }
         if (didUpdate(HeightProp.name)) {
-            Log.d("leon", "update: height" + state.getHeight());
             setSelectorHeight(Utils.dpToPixels(state.getHeight()));
-
-//            uiManager.updateHeight();
         }
 
         if (didUpdate(VariantProp.name, ModeProp.name, Is24hourSourceProp.name, LocaleProp.name)) {
@@ -773,15 +749,7 @@ public class SingleDateAndTimePicker extends FrameLayout {
             setDefaultDate(state.getDate().getTime());
         }
 
-
-//        if (didUpdate(FadeToColorProp.name)) {
-////            uiManager.updateFadeToColor();
-//            Log.d("leon", "update: FadeToColorProp " + state.getFadeToColor());
-//        }
-
         if (didUpdate(TextColorProp.name)) {
-//            uiManager.updateTextColor();
-            Log.d("leon", "update: " + state.getTextColor());
             int fullColor = Color.parseColor(state.getTextColor());
             setSelectedTextColor(fullColor);
             setTextColor(Color.argb(
@@ -793,36 +761,6 @@ public class SingleDateAndTimePicker extends FrameLayout {
 
         }
 
-//        if (didUpdate(ModeProp.name, VariantProp.name, Is24hourSourceProp.name)) {
-////            uiManager.updateWheelVisibility();
-//            Log.d("leon", "update: mode: " + state.getMode() + ", variant: " + state.getVariant() + ", is24hour: " + state.getIs24HourSource());
-//        }
-
-
-//        if (didUpdate(DividerHeightProp.name)) {
-////            uiManager.updateDividerHeight();
-//        }
-//
-//        if (didUpdate(ModeProp.name, LocaleProp.name, VariantProp.name, Is24hourSourceProp.name)) {
-////            uiManager.updateWheelOrder();
-//        }
-//
-//        if (didUpdate(ModeProp.name)) {
-////            uiManager.updateWheelPadding();
-//        }
-//
-//        if (didUpdate(DateProp.name, HeightProp.name, LocaleProp.name,
-//                MaximumDateProp.name, MinimumDateProp.name, MinuteIntervalProp.name, ModeProp.name,
-//                UtcProp.name, VariantProp.name
-//        )) {
-////            uiManager.updateDisplayValues();
-//        }
-
-//        if (didUpdate(LocaleProp.name)) {
-//            Accessibility.setLocale(state.getLocale());
-//        }
-
-//        uiManager.setWheelsToDate();
         updatedProps.clear();
     }
 
@@ -839,9 +777,6 @@ public class SingleDateAndTimePicker extends FrameLayout {
     }
 
     public void scroll(int wheelIndex, int scrollTimes) {
-//        Wheel wheel = wheels.getWheel(state.derived.getOrderedVisibleWheels().get(wheelIndex));
-//        wheelScroller.scroll(wheel, scrollTimes);
-//        uiManager.scroll(wheelIndex, scrollTimes);
     }
 
 
