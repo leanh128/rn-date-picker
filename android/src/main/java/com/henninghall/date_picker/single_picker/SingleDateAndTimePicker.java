@@ -756,9 +756,10 @@ public class SingleDateAndTimePicker extends FrameLayout {
             setDefaultDate(state.getDate().getTime());
         }
 
-//        if (didUpdate(TextColorProp.name)) {
-//            int fullColor = Color.parseColor(state.getTextColor());
-//            setSelectedTextColor(fullColor);
+        if (didUpdate(TextColorProp.name)) {
+            int fullColor = Color.parseColor(state.getTextColor());
+            setSelectedTextColor(fullColor);
+            setTextColor(fullColor);
 //
 ////            setTextColor(fullColor);
 ////            setTextColor(Color.rgb(Color.red(fullColor),
@@ -773,7 +774,7 @@ public class SingleDateAndTimePicker extends FrameLayout {
 ////                    Color.blue((fullColor))
 ////            ));
 //
-//        }
+        }
 
         updatedProps.clear();
     }
