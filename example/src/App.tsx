@@ -14,14 +14,21 @@ export default function App() {
     <View style={styles.container}>
       <DatePicker
         androidVariant="iosClone"
-        locale="en"
+        locale="en_GB"
+        is24hourSource="locale"
         date={new Date()}
         mode="datetime"
+        selectedIndicatorColor="red"
+        minimumDate={new Date()}
+        textColor={'#000000'}
         onConfirm={(date) => {
           console.log(date);
         }}
-        textColor="#000000"
-        backgroundColor="red"
+        onDateChange={(date) =>{
+          console.log('leon', 'date = ', date)
+        }}
+        // textColor="red"
+        // backgroundColor="green"
         onCancel={() => {}}
       />
     </View>
@@ -33,10 +40,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: '#fcfcfc'
   },
-  box: {
-    width: 60,
-    height: 60,
-    marginVertical: 20,
-  },
+
 });

@@ -7,14 +7,14 @@ function addMinutes(date, minutesToAdd) {
 }
 
 const NativeDatePicker = requireNativeComponent(
-  `DatePickerManager`,
+  'SingleDatePickerManager',
   DatePickerAndroid,
   { nativeOnly: { onChange: true } }
 );
 
 const height = 180;
-const timeModeWidth = 240;
-const defaultWidth = 310;
+const timeModeWidth = 280;
+const defaultWidth = 320;
 
 class DatePickerAndroid extends React.PureComponent {
   render() {
@@ -73,7 +73,7 @@ class DatePickerAndroid extends React.PureComponent {
   _fromIsoWithTimeZoneOffset = (timestamp) => {
     const date = new Date(timestamp);
     if (this.props.timeZoneOffsetInMinutes === undefined) return date;
-    return addMinutes(date, -this.props.timeZoneOffsetInMinutes);
+    return addMinutes(date, this.props.timeZoneOffsetInMinutes);
   };
 
   _toIsoWithTimeZoneOffset = (date) => {
