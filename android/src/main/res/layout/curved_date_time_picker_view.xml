@@ -19,6 +19,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:gravity="center"
+        android:paddingEnd="8dp"
         android:orientation="horizontal">
 
         <com.henninghall.date_picker.single_picker.widget.WheelDayPicker
