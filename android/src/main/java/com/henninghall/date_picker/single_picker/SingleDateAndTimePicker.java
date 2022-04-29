@@ -35,6 +35,7 @@ import com.henninghall.date_picker.props.LocaleProp;
 import com.henninghall.date_picker.props.MaximumDateProp;
 import com.henninghall.date_picker.props.MinimumDateProp;
 import com.henninghall.date_picker.props.ModeProp;
+import com.henninghall.date_picker.props.SelectedIndicatorColorProp;
 import com.henninghall.date_picker.props.TextColorProp;
 import com.henninghall.date_picker.props.VariantProp;
 import com.henninghall.date_picker.single_picker.widget.DateWithLabel;
@@ -754,6 +755,9 @@ public class SingleDateAndTimePicker extends FrameLayout {
 
         if (didUpdate(DateProp.name)) {
             setDefaultDate(state.getDate().getTime());
+        }
+        if (didUpdate(SelectedIndicatorColorProp.name)) {
+            iosSelectorIndicator.setBackgroundColor(Color.parseColor(state.getIndicatorColor()));
         }
 
         if (didUpdate(TextColorProp.name)) {

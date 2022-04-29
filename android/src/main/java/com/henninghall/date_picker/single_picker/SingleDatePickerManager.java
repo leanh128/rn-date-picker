@@ -22,6 +22,7 @@ import com.henninghall.date_picker.props.MaximumDateProp;
 import com.henninghall.date_picker.props.MinimumDateProp;
 import com.henninghall.date_picker.props.MinuteIntervalProp;
 import com.henninghall.date_picker.props.ModeProp;
+import com.henninghall.date_picker.props.SelectedIndicatorColorProp;
 import com.henninghall.date_picker.props.TextColorProp;
 import com.henninghall.date_picker.props.UtcProp;
 import com.henninghall.date_picker.props.VariantProp;
@@ -51,7 +52,7 @@ public class SingleDatePickerManager extends SimpleViewManager<SingleDateAndTime
 
     @ReactPropGroup(names = {DateProp.name, ModeProp.name, LocaleProp.name, MaximumDateProp.name,
             MinimumDateProp.name, FadeToColorProp.name, TextColorProp.name, UtcProp.name, MinuteIntervalProp.name,
-            VariantProp.name, DividerHeightProp.name, Is24hourSourceProp.name
+            VariantProp.name, DividerHeightProp.name, Is24hourSourceProp.name, SelectedIndicatorColorProp.name
     })
     public void setProps(SingleDateAndTimePicker picker, int index, Dynamic value) {
         updateProp("setProps", picker, index, value);

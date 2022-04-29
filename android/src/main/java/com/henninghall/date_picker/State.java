@@ -6,6 +6,7 @@ import com.henninghall.date_picker.models.Mode;
 import com.henninghall.date_picker.models.Variant;
 import com.henninghall.date_picker.props.DividerHeightProp;
 import com.henninghall.date_picker.props.Is24hourSourceProp;
+import com.henninghall.date_picker.props.SelectedIndicatorColorProp;
 import com.henninghall.date_picker.props.VariantProp;
 import com.henninghall.date_picker.props.DateProp;
 import com.henninghall.date_picker.props.FadeToColorProp;
@@ -32,6 +33,7 @@ public class State {
     private final LocaleProp localeProp = new LocaleProp();
     private final FadeToColorProp fadeToColorProp = new FadeToColorProp();
     private final TextColorProp textColorProp = new TextColorProp();
+    private final SelectedIndicatorColorProp selectedIndicatorColorProp = new SelectedIndicatorColorProp();
     private final MinuteIntervalProp minuteIntervalProp = new MinuteIntervalProp();
     private final MinimumDateProp minimumDateProp = new MinimumDateProp();
     private final MaximumDateProp maximumDateProp = new MaximumDateProp();
@@ -55,6 +57,7 @@ public class State {
         put(VariantProp.name, variantProp);
         put(DividerHeightProp.name, dividerHeightProp);
         put(Is24hourSourceProp.name, is24hourSourceProp);
+        put(SelectedIndicatorColorProp.name, selectedIndicatorColorProp);
     }};
     public DerivedData derived;
 
@@ -80,6 +83,9 @@ public class State {
 
     public String getTextColor() {
         return (String) textColorProp.getValue();
+    }
+    public String getIndicatorColor() {
+        return (String) selectedIndicatorColorProp.getValue();
     }
 
     public int getMinuteInterval() {
@@ -140,4 +146,5 @@ public class State {
     public void setLastSelectedDate(Calendar date) {
         lastSelectedDate = date;
     }
+
 }
