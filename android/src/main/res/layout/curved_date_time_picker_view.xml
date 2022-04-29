@@ -4,6 +4,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/selectedIndicator"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/WheelItemTextSize"
+        android:background="@drawable/ios_selector_indicator"
+        android:layout_gravity="center"
+        android:paddingVertical="6dp"
+        android:layout_marginHorizontal="16dp"
+        />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -54,7 +64,6 @@
         <View
             android:id="@+id/timeSpaceLeft"
             android:layout_width="0dp"
-            android:background="#f0f"
             android:layout_height="match_parent"
             android:layout_weight="1.5"
             android:visibility="gone" />
@@ -94,7 +103,6 @@
             android:id="@+id/timeSpaceRight"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:background="#f0f"
             android:layout_weight="1.5"
             android:visibility="gone" />
     </LinearLayout>
@@ -105,26 +113,26 @@
         android:layout_height="@dimen/wheelSelectorHeight"
         android:layout_gravity="center_vertical"
         android:alpha="0.2"
-        android:background="@color/picker_default_selector_color" />
+        android:background="@color/picker_default_selector_color"/>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/wheelSelectorHeight"
-        android:layout_gravity="center_vertical"
-        android:orientation="vertical">
+<!--    <RelativeLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="@dimen/wheelSelectorHeight"-->
+<!--        android:layout_gravity="center_vertical"-->
+<!--        android:orientation="vertical">-->
 
-        <View
-            android:id="@+id/picker_divider_1"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/picker_default_divider_height"
-            android:layout_alignParentTop="true"
-            android:background="@drawable/picker_default_divider" />
+<!--        <View-->
+<!--            android:id="@+id/picker_divider_1"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="@dimen/picker_default_divider_height"-->
+<!--            android:layout_alignParentTop="true"-->
+<!--            android:background="@drawable/picker_default_divider" />-->
 
-        <View
-            android:id="@+id/picker_divider_2"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/picker_default_divider_height"
-            android:layout_alignParentBottom="true"
-            android:background="@drawable/picker_default_divider" />
-    </RelativeLayout>
+<!--        <View-->
+<!--            android:id="@+id/picker_divider_2"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="@dimen/picker_default_divider_height"-->
+<!--            android:layout_alignParentBottom="true"-->
+<!--            android:background="@drawable/picker_default_divider" />-->
+<!--    </RelativeLayout>-->
 </FrameLayout>

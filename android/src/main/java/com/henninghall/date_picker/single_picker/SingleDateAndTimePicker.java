@@ -102,6 +102,9 @@ public class SingleDateAndTimePicker extends FrameLayout {
     private View timeSpaceLeft;
     @NonNull
     private View timeSpaceRight;
+    @NonNull
+    private View iosSelectorIndicator;
+
 
     private List<WheelPicker> pickers = new ArrayList<>();
 
@@ -177,6 +180,8 @@ public class SingleDateAndTimePicker extends FrameLayout {
         dtSelector = findViewById(R.id.dtSelector);
         timeSpaceLeft = findViewById(R.id.timeSpaceLeft);
         timeSpaceRight = findViewById(R.id.timeSpaceRight);
+        iosSelectorIndicator = findViewById(R.id.selectedIndicator);
+
 
         pickers.addAll(Arrays.asList(
                 daysPicker,
@@ -733,33 +738,42 @@ public class SingleDateAndTimePicker extends FrameLayout {
             setDisplayDays(state.getMode() == Mode.datetime);
             setCurved(state.getVariant() == Variant.iosClone);
             setDisplayTimeSpace(state.getMode() == Mode.time);
-            boolean is24Hour =(state.getIs24HourSource() == locale && LocaleUtils.localeUsesAmPm(state.getLocale())) || Utils.deviceUsesAmPm();
+            boolean is24Hour = (state.getIs24HourSource() == locale && LocaleUtils.localeUsesAmPm(state.getLocale())) || Utils.deviceUsesAmPm();
             setIsAmPm(!is24Hour);
+            iosSelectorIndicator.setVisibility(state.getVariant() == Variant.iosClone ? VISIBLE : INVISIBLE);
+
         }
 
-        if(didUpdate(MinimumDateProp.name)){
+        if (didUpdate(MinimumDateProp.name)) {
             setMinDate(state.getMinimumDate().getTime());
         }
 
-        if(didUpdate(MaximumDateProp.name)){
+        if (didUpdate(MaximumDateProp.name)) {
             setMaxDate(state.getMaximumDate().getTime());
         }
 
-        if(didUpdate(DateProp.name)){
+        if (didUpdate(DateProp.name)) {
             setDefaultDate(state.getDate().getTime());
         }
 
-        if (didUpdate(TextColorProp.name)) {
-            int fullColor = Color.parseColor(state.getTextColor());
-            setSelectedTextColor(fullColor);
-            setTextColor(Color.argb(
-                    (int) (Color.alpha(fullColor) * ((float) 0x70 / (float) 0xff)),
-                    Color.red(fullColor),
-                    Color.green(fullColor),
-                    Color.blue((fullColor))
-            ));
-
-        }
+//        if (didUpdate(TextColorProp.name)) {
+//            int fullColor = Color.parseColor(state.getTextColor());
+//            setSelectedTextColor(fullColor);
+//
+////            setTextColor(fullColor);
+////            setTextColor(Color.rgb(Color.red(fullColor),
+////                    Color.green(fullColor),
+////                    Color.blue((fullColor))
+////            ));
+//
+////            setTextColor(Color.argb(
+////                    0x70,
+////                    Color.red(fullColor),
+////                    Color.green(fullColor),
+////                    Color.blue((fullColor))
+////            ));
+//
+//        }
 
         updatedProps.clear();
     }

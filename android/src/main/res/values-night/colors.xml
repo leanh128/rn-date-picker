@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="selector_indicator">#3fff</color>
+    <color name="picker_default_selected_text_color">@android:color/white</color>
+    <color name="picker_default_text_color">#3fff</color>
+</resources>
