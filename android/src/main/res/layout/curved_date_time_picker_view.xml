@@ -9,7 +9,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="@dimen/WheelItemTextSize"
-        android:background="@drawable/ios_selector_indicator"
         android:layout_gravity="center"
         android:paddingVertical="6dp"
         android:layout_marginHorizontal="16dp"
