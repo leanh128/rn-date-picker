@@ -8,5 +8,4 @@
     <color name="picker_default_selected_text_color">@android:color/black</color>
     <color name="picker_default_selector_color">#646464</color>
     <color name="picker_default_divider_color">@android:color/transparent</color>
-    <color name="selector_indicator">#EBEBEB</color>
 </resources>

@@ -62,7 +62,7 @@ public class SingleDateAndTimePicker extends FrameLayout {
 
     public static final boolean IS_CYCLIC_DEFAULT = false;
     public static final boolean IS_CURVED_DEFAULT = true;
-    public static final boolean MUST_BE_ON_FUTURE_DEFAULT = false;
+    public static final boolean MUST_BE_ON_FUTURE_DEFAULT = true;
     public static final int DELAY_BEFORE_CHECK_PAST = 200;
     private static final int VISIBLE_ITEM_COUNT_DEFAULT = 7;
     private static final int PM_HOUR_ADDITION = 12;
@@ -103,8 +103,8 @@ public class SingleDateAndTimePicker extends FrameLayout {
     private View timeSpaceLeft;
     @NonNull
     private View timeSpaceRight;
-    @NonNull
-    private View iosSelectorIndicator;
+//    @NonNull
+//    private View iosSelectorIndicator;
 
 
     private List<WheelPicker> pickers = new ArrayList<>();
@@ -181,7 +181,7 @@ public class SingleDateAndTimePicker extends FrameLayout {
         dtSelector = findViewById(R.id.dtSelector);
         timeSpaceLeft = findViewById(R.id.timeSpaceLeft);
         timeSpaceRight = findViewById(R.id.timeSpaceRight);
-        iosSelectorIndicator = findViewById(R.id.selectedIndicator);
+//        iosSelectorIndicator = findViewById(R.id.selectedIndicator);
 
 
         pickers.addAll(Arrays.asList(
@@ -205,7 +205,7 @@ public class SingleDateAndTimePicker extends FrameLayout {
         setTodayText(new DateWithLabel(a.getString(R.styleable.SingleDateAndTimePicker_picker_todayText), new Date()));
         setTextColor(a.getColor(R.styleable.SingleDateAndTimePicker_picker_textColor, ContextCompat.getColor(context, R.color.picker_default_text_color)));
         setSelectedTextColor(a.getColor(R.styleable.SingleDateAndTimePicker_picker_selectedTextColor, ContextCompat.getColor(context, R.color.picker_default_selected_text_color)));
-        setSelectorColor(a.getColor(R.styleable.SingleDateAndTimePicker_picker_selectorColor, ContextCompat.getColor(context, android.R.color.transparent)));
+        setSelectorColor(a.getColor(R.styleable.SingleDateAndTimePicker_picker_selectorColor, ContextCompat.getColor(context, R.color.picker_default_selector_color)));
         setItemSpacing(a.getDimensionPixelSize(R.styleable.SingleDateAndTimePicker_picker_itemSpacing, resources.getDimensionPixelSize(R.dimen.wheelSelectorHeight)));
         setCurvedMaxAngle(a.getInteger(R.styleable.SingleDateAndTimePicker_picker_curvedMaxAngle, WheelPicker.MAX_ANGLE));
         setSelectorHeight(a.getDimensionPixelSize(R.styleable.SingleDateAndTimePicker_picker_selectorHeight, resources.getDimensionPixelSize(R.dimen.wheelSelectorHeight)));
@@ -728,9 +728,9 @@ public class SingleDateAndTimePicker extends FrameLayout {
 
 
     public void update() {
-        if (didUpdate(HeightProp.name)) {
-            setSelectorHeight(Utils.dpToPixels(state.getHeight()));
-        }
+//        if (didUpdate(HeightProp.name)) {
+//            setSelectorHeight(Utils.dpToPixels(state.getHeight()));
+//        }
 
         if (didUpdate(VariantProp.name, ModeProp.name, Is24hourSourceProp.name, LocaleProp.name)) {
             setDisplayYears(state.getMode() == Mode.date);
@@ -741,7 +741,7 @@ public class SingleDateAndTimePicker extends FrameLayout {
             setDisplayTimeSpace(state.getMode() == Mode.time);
             boolean is24Hour = (state.getIs24HourSource() == locale && LocaleUtils.localeUsesAmPm(state.getLocale())) || Utils.deviceUsesAmPm();
             setIsAmPm(!is24Hour);
-            iosSelectorIndicator.setVisibility(state.getVariant() == Variant.iosClone ? VISIBLE : INVISIBLE);
+//            iosSelectorIndicator.setVisibility(state.getVariant() == Variant.iosClone ? VISIBLE : INVISIBLE);
 
         }
 
@@ -756,29 +756,15 @@ public class SingleDateAndTimePicker extends FrameLayout {
         if (didUpdate(DateProp.name)) {
             setDefaultDate(state.getDate().getTime());
         }
-        if (didUpdate(SelectedIndicatorColorProp.name)) {
-            iosSelectorIndicator.setBackgroundColor(Color.parseColor(state.getIndicatorColor()));
-        }
+//        if (didUpdate(SelectedIndicatorColorProp.name)) {
+//            iosSelectorIndicator.setBackgroundColor(Color.parseColor(state.getIndicatorColor()));
+//        }
 
-        if (didUpdate(TextColorProp.name)) {
-            int fullColor = Color.parseColor(state.getTextColor());
-            setSelectedTextColor(fullColor);
-            setTextColor(fullColor);
-//
-////            setTextColor(fullColor);
-////            setTextColor(Color.rgb(Color.red(fullColor),
-////                    Color.green(fullColor),
-////                    Color.blue((fullColor))
-////            ));
-//
-////            setTextColor(Color.argb(
-////                    0x70,
-////                    Color.red(fullColor),
-////                    Color.green(fullColor),
-////                    Color.blue((fullColor))
-////            ));
-//
-        }
+//        if (didUpdate(TextColorProp.name)) {
+//            int fullColor = Color.parseColor(state.getTextColor());
+//            setSelectedTextColor(fullColor);
+//            setTextColor(fullColor);
+//        }
 
         updatedProps.clear();
     }
