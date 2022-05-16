@@ -211,7 +211,7 @@ public class SingleDateAndTimePicker extends FrameLayout {
         setSelectorHeight(a.getDimensionPixelSize(R.styleable.SingleDateAndTimePicker_picker_selectorHeight, resources.getDimensionPixelSize(R.dimen.wheelSelectorHeight)));
         setTextSize(a.getDimensionPixelSize(R.styleable.SingleDateAndTimePicker_picker_textSize, resources.getDimensionPixelSize(R.dimen.WheelItemTextSize)));
         setCurved(a.getBoolean(R.styleable.SingleDateAndTimePicker_picker_curved, true));
-        setCyclic(a.getBoolean(R.styleable.SingleDateAndTimePicker_picker_cyclic, true));
+        setCyclic(a.getBoolean(R.styleable.SingleDateAndTimePicker_picker_cyclic, false));
         setMustBeOnFuture(a.getBoolean(R.styleable.SingleDateAndTimePicker_picker_mustBeOnFuture, MUST_BE_ON_FUTURE_DEFAULT));
         setVisibleItemCount(a.getInt(R.styleable.SingleDateAndTimePicker_picker_visibleItemCount, VISIBLE_ITEM_COUNT_DEFAULT));
         setStepSizeMinutes(a.getInt(R.styleable.SingleDateAndTimePicker_picker_stepSizeMinutes, 1));
