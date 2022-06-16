@@ -739,8 +739,12 @@ public class SingleDateAndTimePicker extends FrameLayout {
             setDisplayDays(state.getMode() == Mode.datetime);
             setCurved(state.getVariant() == Variant.iosClone);
             setDisplayTimeSpace(state.getMode() == Mode.time);
-            boolean is24Hour = (state.getIs24HourSource() == locale && LocaleUtils.localeUsesAmPm(state.getLocale())) || Utils.deviceUsesAmPm();
-            setIsAmPm(!is24Hour);
+            boolean isAmPm ;
+            if (state.getIs24HourSource() == locale)
+                isAmPm = LocaleUtils.localeUsesAmPm(state.getLocale());
+            else isAmPm = Utils.deviceUsesAmPm();
+
+            setIsAmPm(isAmPm);
 //            iosSelectorIndicator.setVisibility(state.getVariant() == Variant.iosClone ? VISIBLE : INVISIBLE);
 
         }
