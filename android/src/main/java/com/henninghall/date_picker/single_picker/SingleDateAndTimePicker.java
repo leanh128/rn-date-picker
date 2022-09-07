@@ -104,7 +104,7 @@ public class SingleDateAndTimePicker extends FrameLayout {
     @NonNull
     private View timeSpaceRight;
     @NonNull
-    private View iosSelectorIndicator;
+    // private View iosSelectorIndicator;
 
 
     private List<WheelPicker> pickers = new ArrayList<>();
@@ -760,9 +760,9 @@ public class SingleDateAndTimePicker extends FrameLayout {
         if (didUpdate(DateProp.name)) {
             setDefaultDate(state.getDate().getTime());
         }
-        if (didUpdate(SelectedIndicatorColorProp.name)) {
-            iosSelectorIndicator.setBackgroundColor(Color.parseColor(state.getIndicatorColor()));
-        }
+        // if (didUpdate(SelectedIndicatorColorProp.name)) {
+        //     iosSelectorIndicator.setBackgroundColor(Color.parseColor(state.getIndicatorColor()));
+        // }
 
         if (didUpdate(TextColorProp.name)) {
             int fullColor = Color.parseColor(state.getTextColor());
