@@ -103,8 +103,8 @@ public class SingleDateAndTimePicker extends FrameLayout {
     private View timeSpaceLeft;
     @NonNull
     private View timeSpaceRight;
-//    @NonNull
-//    private View iosSelectorIndicator;
+    @NonNull
+    private View iosSelectorIndicator;
 
 
     private List<WheelPicker> pickers = new ArrayList<>();
@@ -209,7 +209,7 @@ public class SingleDateAndTimePicker extends FrameLayout {
         setItemSpacing(a.getDimensionPixelSize(R.styleable.SingleDateAndTimePicker_picker_itemSpacing, resources.getDimensionPixelSize(R.dimen.wheelSelectorHeight)));
         setCurvedMaxAngle(a.getInteger(R.styleable.SingleDateAndTimePicker_picker_curvedMaxAngle, WheelPicker.MAX_ANGLE));
         setSelectorHeight(a.getDimensionPixelSize(R.styleable.SingleDateAndTimePicker_picker_selectorHeight, resources.getDimensionPixelSize(R.dimen.wheelSelectorHeight)));
-        setTextSize(a.getDimensionPixelSize(R.styleable.SingleDateAndTimePicker_picker_textSize, 66));
+        setTextSize(a.getDimensionPixelSize(R.styleable.SingleDateAndTimePicker_picker_textSize, resources.getDimensionPixelSize(R.dimen.WheelItemTextSize)));
         setCurved(a.getBoolean(R.styleable.SingleDateAndTimePicker_picker_curved, true));
         setCyclic(a.getBoolean(R.styleable.SingleDateAndTimePicker_picker_cyclic, false));
         setMustBeOnFuture(a.getBoolean(R.styleable.SingleDateAndTimePicker_picker_mustBeOnFuture, MUST_BE_ON_FUTURE_DEFAULT));
@@ -760,15 +760,15 @@ public class SingleDateAndTimePicker extends FrameLayout {
         if (didUpdate(DateProp.name)) {
             setDefaultDate(state.getDate().getTime());
         }
-//        if (didUpdate(SelectedIndicatorColorProp.name)) {
-//            iosSelectorIndicator.setBackgroundColor(Color.parseColor(state.getIndicatorColor()));
-//        }
+        if (didUpdate(SelectedIndicatorColorProp.name)) {
+            iosSelectorIndicator.setBackgroundColor(Color.parseColor(state.getIndicatorColor()));
+        }
 
-//        if (didUpdate(TextColorProp.name)) {
-//            int fullColor = Color.parseColor(state.getTextColor());
-//            setSelectedTextColor(fullColor);
-//            setTextColor(fullColor);
-//        }
+        if (didUpdate(TextColorProp.name)) {
+            int fullColor = Color.parseColor(state.getTextColor());
+            setSelectedTextColor(fullColor);
+            setTextColor(fullColor);
+        }
 
         updatedProps.clear();
     }
