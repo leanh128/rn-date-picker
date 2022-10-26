@@ -3,7 +3,7 @@
 
   <dimen name="picker_default_divider_height">1dp</dimen>
   <drawable name="picker_default_divider">@drawable/picker_divider</drawable>
-  <dimen name="WheelItemTextSize">24sp</dimen>
+  <dimen name="WheelItemTextSize">24dp</dimen>
   <dimen name="WheelItemSpace">12dp</dimen>
   <dimen name="WheelIndicatorSize">2dp</dimen>
   <dimen name="WheelMargins">8dp</dimen>
