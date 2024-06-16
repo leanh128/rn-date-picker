@@ -733,6 +733,8 @@ public class SingleDateAndTimePicker extends FrameLayout {
 //        }
 
         if (didUpdate(VariantProp.name, ModeProp.name, Is24hourSourceProp.name, LocaleProp.name)) {
+            setDisplayHours(state.getMode() != Mode.date);
+            setDisplayMinutes(state.getMode() != Mode.date);
             setDisplayYears(state.getMode() == Mode.date);
             setDisplayMonths(state.getMode() == Mode.date);
             setDisplayDaysOfMonth(state.getMode() == Mode.date);
