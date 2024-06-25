@@ -62,7 +62,7 @@ public class SingleDateAndTimePicker extends FrameLayout {
 
     public static final boolean IS_CYCLIC_DEFAULT = false;
     public static final boolean IS_CURVED_DEFAULT = true;
-    public static final boolean MUST_BE_ON_FUTURE_DEFAULT = true;
+    public static final boolean MUST_BE_ON_FUTURE_DEFAULT = false;
     public static final int DELAY_BEFORE_CHECK_PAST = 200;
     private static final int VISIBLE_ITEM_COUNT_DEFAULT = 7;
     private static final int PM_HOUR_ADDITION = 12;
@@ -540,8 +540,8 @@ public class SingleDateAndTimePicker extends FrameLayout {
     }
 
     private void checkMinMaxDate(final WheelPicker picker) {
-        checkBeforeMinDate(picker);
-        checkAfterMaxDate(picker);
+//        checkBeforeMinDate(picker);
+//        checkAfterMaxDate(picker);
     }
 
     private void checkBeforeMinDate(final WheelPicker picker) {
@@ -717,6 +717,7 @@ public class SingleDateAndTimePicker extends FrameLayout {
             yearsPicker.setMinYear(calendar.get(Calendar.YEAR));
             calendar.setTime(this.maxDate);
             yearsPicker.setMaxYear(calendar.get(Calendar.YEAR));
+            yearsPicker.updateAdapter();
         }
     }
 
@@ -733,14 +734,19 @@ public class SingleDateAndTimePicker extends FrameLayout {
 //        }
 
         if (didUpdate(VariantProp.name, ModeProp.name, Is24hourSourceProp.name, LocaleProp.name)) {
-            setDisplayHours(state.getMode() != Mode.date);
-            setDisplayMinutes(state.getMode() != Mode.date);
-            setDisplayYears(state.getMode() == Mode.date);
-            setDisplayMonths(state.getMode() == Mode.date);
-            setDisplayDaysOfMonth(state.getMode() == Mode.date);
-            setDisplayDays(state.getMode() == Mode.datetime);
+            Mode mode = state.getMode();
+            this.displayDays = mode == Mode.datetime;
+            this.displayDaysOfMonth = mode == Mode.date;
+            setMustBeOnFuture(mode == Mode.datetime);
+            daysPicker.updateAdapter();
+            setDisplayDaysOfMonth(mode == Mode.date);
+            setDisplayDays(mode == Mode.datetime);
+            setDisplayMonths(mode == Mode.date);
+            setDisplayYears(mode == Mode.date);
+            setDisplayHours(mode != Mode.date);
+            setDisplayMinutes(mode != Mode.date);
+            setDisplayTimeSpace(mode == Mode.time);
             setCurved(state.getVariant() == Variant.iosClone);
-            setDisplayTimeSpace(state.getMode() == Mode.time);
             boolean isAmPm ;
             if (state.getIs24HourSource() == locale)
                 isAmPm = LocaleUtils.localeUsesAmPm(state.getLocale());
